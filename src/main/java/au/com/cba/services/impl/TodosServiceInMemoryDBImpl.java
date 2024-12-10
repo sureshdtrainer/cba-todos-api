@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service
+//@Service
 public class TodosServiceInMemoryDBImpl implements TodosService {
     private static List<Todo> todos= new ArrayList<>();
     private static int todosCount=3;
@@ -48,5 +48,16 @@ public class TodosServiceInMemoryDBImpl implements TodosService {
         existingTodo.setTargerDate(todo.getTargerDate());
         existingTodo.setDone(todo.isDone());
         return existingTodo;
+    }
+
+    @Override
+    public boolean deleteTodo(int id) {
+        for(int i=0; i< todos.size(); i++){
+            if(todos.get(i).getId() == id){
+                todos.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 }

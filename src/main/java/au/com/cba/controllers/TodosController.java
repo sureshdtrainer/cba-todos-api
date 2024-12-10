@@ -1,5 +1,6 @@
 package au.com.cba.controllers;
 
+import au.com.cba.exceptions.ResourceNotFoundException;
 import au.com.cba.models.Todo;
 import au.com.cba.services.TodosService;
 import org.slf4j.Logger;
@@ -40,5 +41,9 @@ public class TodosController {
     @PutMapping("{id}")
     public Todo updateTodo(@PathVariable int id, @RequestBody Todo todo){
         return todosService.updateTodo(id,todo);
+    }
+    @DeleteMapping("{id}")
+    public boolean deleteTodo(@PathVariable int id){
+        return todosService.deleteTodo(id);
     }
 }
