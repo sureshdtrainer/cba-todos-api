@@ -1,5 +1,6 @@
 package au.com.cba.services.impl;
 
+import au.com.cba.exceptions.ResourceNotFoundException;
 import au.com.cba.models.Todo;
 import au.com.cba.services.TodosService;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,11 @@ public class TodosServiceInMemoryDBImpl implements TodosService {
     }
 
     @Override
-    public Todo getTodoById() {
-        return null;
+    public Todo getTodoById(int id) throws ResourceNotFoundException{
+        for(Todo todo: todos){
+            if(todo.getId()== id)
+                return todo;
+        }
+        throw new ResourceNotFoundException("todos", "id", id);
     }
 }

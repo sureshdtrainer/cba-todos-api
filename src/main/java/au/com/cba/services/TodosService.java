@@ -7,5 +7,5 @@ import java.util.List;
 public interface TodosService {
     Todo saveTodo(Todo todo);
     List<Todo> getAllTodos();
-    Todo getTodoById();
+    Todo getTodoById(int id);
 }
