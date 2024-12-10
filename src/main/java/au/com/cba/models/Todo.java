@@ -14,6 +14,9 @@ public class Todo {
     private Date targerDate;
     private boolean isDone;
 
+    public Todo() {
+    }
+
     public int getId() {
         return id;
     }
