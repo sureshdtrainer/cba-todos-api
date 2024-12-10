@@ -22,8 +22,10 @@ public class TodosServiceInMemoryDBImpl implements TodosService {
 
     @Override
     public Todo saveTodo(Todo todo) {
-        return null;
-    }
+        todo.setId(++todosCount);
+        todos.add(todo);
+        return todo;
+        }
 
     @Override
     public List<Todo> getAllTodos() {
@@ -37,5 +39,14 @@ public class TodosServiceInMemoryDBImpl implements TodosService {
                 return todo;
         }
         throw new ResourceNotFoundException("todos", "id", id);
+    }
+
+    @Override
+    public Todo updateTodo(int id, Todo todo) throws ResourceNotFoundException{
+        Todo existingTodo = this.getTodoById(id);
+        existingTodo.setDescription(todo.getDescription());
+        existingTodo.setTargerDate(todo.getTargerDate());
+        existingTodo.setDone(todo.isDone());
+        return existingTodo;
     }
 }
